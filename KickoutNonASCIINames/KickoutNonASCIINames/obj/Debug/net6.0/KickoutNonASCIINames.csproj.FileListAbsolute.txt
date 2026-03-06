@@ -1,0 +1,12 @@
+E:\CshapeFile\KickoutNonASCIINames\KickoutNonASCIINames\bin\Debug\net6.0\KickoutNonASCIINames.deps.json
+E:\CshapeFile\KickoutNonASCIINames\KickoutNonASCIINames\bin\Debug\net6.0\KickoutNonASCIINames.dll
+E:\CshapeFile\KickoutNonASCIINames\KickoutNonASCIINames\bin\Debug\net6.0\KickoutNonASCIINames.pdb
+E:\CshapeFile\KickoutNonASCIINames\KickoutNonASCIINames\obj\Debug\net6.0\KickoutNonASCIINames.csproj.AssemblyReference.cache
+E:\CshapeFile\KickoutNonASCIINames\KickoutNonASCIINames\obj\Debug\net6.0\KickoutNonASCIINames.GeneratedMSBuildEditorConfig.editorconfig
+E:\CshapeFile\KickoutNonASCIINames\KickoutNonASCIINames\obj\Debug\net6.0\KickoutNonASCIINames.AssemblyInfoInputs.cache
+E:\CshapeFile\KickoutNonASCIINames\KickoutNonASCIINames\obj\Debug\net6.0\KickoutNonASCIINames.AssemblyInfo.cs
+E:\CshapeFile\KickoutNonASCIINames\KickoutNonASCIINames\obj\Debug\net6.0\KickoutNonASCIINames.csproj.CoreCompileInputs.cache
+E:\CshapeFile\KickoutNonASCIINames\KickoutNonASCIINames\obj\Debug\net6.0\KickoutNonASCIINames.dll
+E:\CshapeFile\KickoutNonASCIINames\KickoutNonASCIINames\obj\Debug\net6.0\refint\KickoutNonASCIINames.dll
+E:\CshapeFile\KickoutNonASCIINames\KickoutNonASCIINames\obj\Debug\net6.0\KickoutNonASCIINames.pdb
+E:\CshapeFile\KickoutNonASCIINames\KickoutNonASCIINames\obj\Debug\net6.0\ref\KickoutNonASCIINames.dll
