@@ -51,6 +51,7 @@ public class Plugin : TerrariaPlugin
         {
             case "run":
                 kick_out_function();
+                args.Player.SendSuccessMessage("已执行一次踢出");
                 break;
             case "enable":
                 this.EnableAutoKick = true;
@@ -80,17 +81,23 @@ public class Plugin : TerrariaPlugin
     
     private void kick_out_function()
     {
-        var plrs = TShock.Players;
-        if (plrs==null)
-            return;
-        var plrsLength = plrs.Length;
-        string plr;
-        for(int i = 0;i<plrsLength;i++){
-            plr=plrs[i].Name;
-            if (HasNonASCIIChars(plr))
-            {
-                plrs[i].Kick(KickMsg,true,true,plr,false);
+        try
+        {
+            var plrs = TShock.Players;
+            if (plrs==null)
+                return;
+            var plrsLength = plrs.Length;
+            string plr;
+            for(int i = 0;i<plrsLength;i++){
+                if (string.IsNullOrEmpty(plrs[i].Name))
+                    continue;
+                plr=plrs[i].Name;
+                if (HasNonASCIIChars(plr))
+                    plrs[i].Kick(KickMsg,true,true,plr,false);
             }
+        }
+        catch (Exception e)
+        {
         }
         
     }
@@ -104,7 +111,6 @@ public class Plugin : TerrariaPlugin
     {
         if (disposing)
         {
-            //移除所有由本插件添加的所有指令
             var asm = Assembly.GetExecutingAssembly();
             Commands.ChatCommands.RemoveAll(c => c.CommandDelegate.Method?.DeclaringType?.Assembly == asm);
             ServerApi.Hooks.ServerJoin.Deregister(this, hook_run_function);
