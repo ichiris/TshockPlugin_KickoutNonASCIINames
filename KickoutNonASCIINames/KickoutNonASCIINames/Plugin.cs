@@ -23,6 +23,12 @@ public class Plugin : TerrariaPlugin
 
     private bool EnableAutoKick = true;
     private string KickMsg = "由于昵称含有非ASCII字符，你已被踢出。";
+    private string CommandHelp = "Koin子命令：\n"+ 
+                                 "/koin help -- 查看帮助\n"+
+                                 "/koin run -- 手动执行一次踢出\n" +
+                                 "/koin enable -- 启用自动踢出\n" +
+                                 "/koin disable -- 禁用自动踢出\n";
+    private string InvalidCommandSendBack = "无效的koin子命令，使用 /koin help 以查看可用的指令。";
     
     public override void Initialize()
     {
@@ -39,16 +45,14 @@ public class Plugin : TerrariaPlugin
     {
         if (args.Parameters.Count != 1)
         {
-            args.Player.SendErrorMessage(
-                "无效的koin子命令。\n"+
-                "/koin run -- 手动执行一次踢出\n" +
-                "/koin enable -- 启用自动踢出\n"+
-                "/koin disable -- 禁用自动踢出\n");
+            args.Player.SendErrorMessage(InvalidCommandSendBack);
             return;
         }
-
         switch (args.Parameters[0])
         {
+            case "help":
+                args.Player.SendSuccessMessage(CommandHelp);
+                break;
             case "run":
                 kick_out_function();
                 args.Player.SendSuccessMessage("已执行一次踢出");
@@ -63,11 +67,7 @@ public class Plugin : TerrariaPlugin
                 args.Player.SendSuccessMessage("自动踢出已禁用");
                 break;
             default:
-                args.Player.SendErrorMessage(
-                    "无效的koin子命令。\n" +
-                    "/koin run -- 执行一次踢出\n" +
-                    "/koin enable -- 启用自动踢出\n"+
-                    "/koin disable -- 禁用自动踢出\n");
+                args.Player.SendErrorMessage(InvalidCommandSendBack);
                 break;       
         }
     }
@@ -87,22 +87,25 @@ public class Plugin : TerrariaPlugin
             if (plrs==null)
                 return;
             var plrsLength = plrs.Length;
-            string plr;
+            //string plr;
             for(int i = 0;i<plrsLength;i++){
-                if (string.IsNullOrEmpty(plrs[i].Name))
+                if (plrs[i]==null)
                     continue;
-                plr=plrs[i].Name;
-                if (HasNonASCIIChars(plr))
-                    plrs[i].Kick(KickMsg,true,true,plr,false);
+                //plr=plrs[i].Name;
+                if (HasNonAsciiChars(plrs[i].Name))
+                {
+                    plrs[i].Kick(KickMsg, true, true);
+                    i--;
+                }
             }
         }
         catch (Exception e)
         {
+            Console.WriteLine(e);
         }
-        
     }
     
-    private bool HasNonASCIIChars(string str)
+    private bool HasNonAsciiChars(string str)
     {
         return (System.Text.Encoding.UTF8.GetByteCount(str) != str.Length);
     }
